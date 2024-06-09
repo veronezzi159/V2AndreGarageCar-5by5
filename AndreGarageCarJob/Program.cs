@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using V2AndreGarageCar_5by5.Data;
+using AndreGarageCarJob.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<V2AndreGarageCar_5by5Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("V2AndreGarageCar_5by5Context") ?? throw new InvalidOperationException("Connection string 'V2AndreGarageCar_5by5Context' not found.")));
+builder.Services.AddDbContext<AndreGarageCarJobContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AndreGarageCarJobContext") ?? throw new InvalidOperationException("Connection string 'AndreGarageCarJobContext' not found.")));
 
 // Add services to the container.
 

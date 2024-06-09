@@ -29,7 +29,6 @@ namespace Models
             this.State = AdressApi.Uf;
             this.Neighborhood = AdressApi.Bairro;
             this.City = AdressApi.Localidade;
-
         }
         public override string? ToString() => $"Id: {Id}\nStreet: {Street}\nZipCode: {ZipCode}\nComplement: {Complement}\nState: {State}\nNeighborhood: {Neighborhood}\nCity: {City}\nNumber: {Number}";
     }
