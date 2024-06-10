@@ -8,8 +8,8 @@ namespace Models.DTO
 {
     public class AdressDTO
     {
-        public string CEPDTO { get; set; }
-        public int NumberDTO { get; set; }
-        public string ComplementDTO { get; set; }
+        public string ZipCode { get; set; }
+        public string Number { get; set; }
+        public string Complement { get; set; }
     }
 }
