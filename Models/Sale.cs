@@ -21,16 +21,9 @@ namespace Models
         public Sale(SaleDTO saleDTO)
         {
             Id = saleDTO.Id;
-            Car car = new Car() { Plate = saleDTO.CarPlate };
-            Car = car;
             SaleDate = saleDTO.SaleDate;
             SaleValue = saleDTO.SaleValue;
-            Employee employee = new Employee() { Document = saleDTO.EmployeeDocument };
-            Employee = employee;
-            Client client = new Client() { Document = saleDTO.ClientDocument };
-            Client = client;
-            Payment payment = new Payment() { Id = saleDTO.PaymentId };
-            Payment = payment;
+          
         }
     
     }
