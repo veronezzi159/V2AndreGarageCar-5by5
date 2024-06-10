@@ -30,7 +30,7 @@ namespace AndreGaragePurchase.Controllers
           {
               return NotFound();
           }
-            return await _context.Purchase.ToListAsync();
+            return await _context.Purchase.Include(p => p.Car).ToListAsync();
         }
 
         // GET: api/Purchases/5
@@ -41,7 +41,7 @@ namespace AndreGaragePurchase.Controllers
           {
               return NotFound();
           }
-            var purchase = await _context.Purchase.FindAsync(id);
+            var purchase = await _context.Purchase.Include(p => p.Car).FirstOrDefaultAsync(p => p.Id == id);
 
             if (purchase == null)
             {
