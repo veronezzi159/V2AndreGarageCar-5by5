@@ -18,7 +18,7 @@ namespace Models
         {
 
         }
-        public Employee(EmployeeDTO employeeDTO)
+        public Employee(EmployeeDTO employeeDTO, Adress adress)
         {
             this.Document = employeeDTO.Document;
             this.Name = employeeDTO.Name;
@@ -30,6 +30,7 @@ namespace Models
             this.Position = p;
             this.ComissionValue = employeeDTO.EmployeeComissionValue;
             this.Comission = employeeDTO.EmployeeComission;
+            this.Adress = adress;
         }
     }
 }

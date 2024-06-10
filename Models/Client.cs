@@ -11,7 +11,7 @@ namespace Models
     {
         public static readonly string SELECT = "SELECT p.Document, p.Name, p.BirthDate, p.Phone, p.Email, c.Income, a.Id, a.Street, a.ZipCode, a.Complement, a.State,a.Neighborhood, a.City,a.Number FROM Client c INNER JOIN Person p on c.Document = p.Document INNER JOIN Adress a on a.Id = p.AdressId";
 
-        public Decimal Income { get; set; }
+        public Decimal? Income { get; set; }
 
         public Client()
         {
