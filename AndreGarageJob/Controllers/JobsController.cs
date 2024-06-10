@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AndreGarageJob.Data;
 using Models;
+using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace AndreGarageJob.Controllers
 {
@@ -15,6 +17,7 @@ namespace AndreGarageJob.Controllers
     public class JobsController : ControllerBase
     {
         private readonly AndreGarageJobContext _context;
+        private readonly string Conection = "Data Source=127.0.0.1; Initial Catalog=AndreVehiclesAPI; User Id=sa; Password=SqlServer2019!; TrustServerCertificate=true;";
 
         public JobsController(AndreGarageJobContext context)
         {
@@ -48,6 +51,16 @@ namespace AndreGarageJob.Controllers
             }
 
             return job;
+        }
+        [HttpGet("Dapper")]
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobDapper()
+        {
+            using (SqlConnection connection = new SqlConnection (Conection))
+            {
+                connection.Open();
+                var jobs = connection.Query<Job>("SELECT Id, Description FROM Job").ToList();
+                return jobs;
+            }
         }
 
         // PUT: api/Jobs/5
