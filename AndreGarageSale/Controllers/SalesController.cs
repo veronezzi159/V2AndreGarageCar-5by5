@@ -30,7 +30,7 @@ namespace AndreGarageSale.Controllers
           {
               return NotFound();
           }
-            return await _context.Sale.Include(s => s.Payment).Include(s => s.Employee).Include(s => s.Client).Include(s => s.Car).ToListAsync();
+            return await _context.Sale.Include(s => s.Payment).Include(s=> s.Payment.Card).Include(s=> s.Payment.Boleto).Include(s => s.Payment.Pix).Include(s => s.Payment.Pix.Type).Include(s => s.Employee).Include(s => s.Employee.Position).Include(s=> s.Employee.Adress).Include(s => s.Client).Include(s=> s.Client.Adress).Include(s => s.Car).ToListAsync();
         }
 
         // GET: api/Sales/5
@@ -41,7 +41,7 @@ namespace AndreGarageSale.Controllers
           {
               return NotFound();
           }
-            var sale = await _context.Sale.Include(s => s.Payment).Include(s => s.Employee).Include(s => s.Client).Include(s => s.Car).FirstOrDefaultAsync(s => s.Id == id);
+            var sale = await _context.Sale.Include(s => s.Payment).Include(s => s.Payment.Card).Include(s => s.Payment.Boleto).Include(s => s.Payment.Pix).Include(s => s.Payment.Pix.Type).Include(s => s.Employee).Include(s => s.Employee.Position).Include(s => s.Employee.Adress).Include(s => s.Client).Include(s => s.Client.Adress).Include(s => s.Car).FirstOrDefaultAsync(s => s.Id == id);
 
             if (sale == null)
             {
