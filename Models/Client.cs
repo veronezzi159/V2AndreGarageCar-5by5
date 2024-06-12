@@ -10,6 +10,7 @@ namespace Models
     public class Client : Person
     {
         public static readonly string SELECT = "SELECT p.Document, p.Name, p.BirthDate, p.Phone, p.Email, c.Income, a.Id, a.Street, a.ZipCode, a.Complement, a.State,a.Neighborhood, a.City,a.Number FROM Client c INNER JOIN Person p on c.Document = p.Document INNER JOIN Adress a on a.Id = p.AdressId";
+        public static readonly string SELECT_WHERE_DOC = "SELECT p.Document, p.Name, p.BirthDate, p.Phone, p.Email, c.Income, a.Id, a.Street, a.ZipCode, a.Complement, a.State,a.Neighborhood, a.City,a.Number FROM Client c INNER JOIN Person p on c.Document = p.Document INNER JOIN Adress a on a.Id = p.AdressId WHERE p.Document = @Document";
 
         public Decimal? Income { get; set; }
 

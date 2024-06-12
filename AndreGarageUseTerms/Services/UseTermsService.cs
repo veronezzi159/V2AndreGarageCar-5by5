@@ -16,7 +16,7 @@ namespace AndreGarageUseTerms.Services
             _useTerms = database.GetCollection<UseTerms>(settings.UseTermsCollectionName);
         }
         public List<UseTerms> GetAll() => _useTerms.Find(useTerms => true).ToList();
-        public UseTerms Get(int id) => _useTerms.Find<UseTerms>(u => u.Id == id).FirstOrDefault();
+        public UseTerms GetById(string id) => _useTerms.Find<UseTerms>(u => u.Id == id).FirstOrDefault();
         public UseTerms Create(UseTerms useTerms)
         {
             _useTerms.InsertOne(useTerms);
@@ -28,5 +28,7 @@ namespace AndreGarageUseTerms.Services
             return useTerms;
         }
         public void Remove(UseTerms useTerms) => _useTerms.DeleteOne(u => u.Id == useTerms.Id);
+
+        public UseTerms GetLastVersion() => _useTerms.Find(useTerms => true).SortByDescending(u => u.Version).FirstOrDefault();
     }
 }
