@@ -107,7 +107,7 @@ namespace V2AndreGarageCar_5by5.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCar", new { id = car.Plate }, car);
+            return car; //CreatedAtAction("GetCar", new { id = car.Plate }, car);
         }
 
         // DELETE: api/Cars/5
