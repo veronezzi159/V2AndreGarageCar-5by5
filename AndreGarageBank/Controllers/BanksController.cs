@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using RabbitMQ.Client;
+using System.Text;
 
 namespace AndreGarageBank.Controllers
 {
@@ -10,10 +12,12 @@ namespace AndreGarageBank.Controllers
     public class BanksController : ControllerBase
     {
         private readonly BankService _bankService;
-
-        public BanksController(BankService bank)
+        private readonly ConnectionFactory _factory;
+        private const string _QueueName = "Bank";
+        public BanksController(BankService bank, ConnectionFactory connectionFactory)
         {
             _bankService = bank;
+            _factory = connectionFactory;
         }
 
         [HttpGet]
@@ -33,10 +37,29 @@ namespace AndreGarageBank.Controllers
             return bank;
         }
         [HttpPost]
-        public ActionResult<Bank> Create(Bank bank)
+        public IActionResult PostBank([FromBody] Bank bank)
         {
-            _bankService.Create(bank);
-            return bank;
+            using (var connection = _factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: _QueueName,
+                                        durable: false,
+                                        exclusive: false,
+                                        autoDelete: false,
+                                        arguments: null
+                    );
+                    var stringBank = Newtonsoft.Json.JsonConvert.SerializeObject(bank);
+                    var body = Encoding.UTF8.GetBytes(stringBank);
+
+                    channel.BasicPublish(exchange: "",
+                                        routingKey: _QueueName,
+                                        basicProperties: null,
+                                        body: body
+                    );
+                }
+            }       
+            return Accepted();
         }
         [HttpPut("{cnpj}")]
         public IActionResult Update(string cnpj, Bank bankIn)

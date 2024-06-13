@@ -1,7 +1,6 @@
-using AndreGarageBank.Services;
-using AndreGarageBank.Utils;
+using AndreGarageBankMongoDB.Utils;
+using AndreGarageBankMongoDB.Services;
 using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +16,8 @@ builder.Services.Configure<DataBaseSettings>(
 builder.Services.AddSingleton<IDataBaseSettings>(sp =>
     sp.GetRequiredService<IOptions<DataBaseSettings>>().Value);
 
-builder.Services.AddSingleton<BankService>();
-builder.Services.AddSingleton<ConnectionFactory>();
+builder.Services.AddSingleton<BankServiceMongo>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
