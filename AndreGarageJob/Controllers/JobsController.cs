@@ -106,7 +106,7 @@ namespace AndreGarageJob.Controllers
             _context.Job.Add(job);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetJob", new { id = job.Id }, job);
+            return job; //CreatedAtAction("GetJob", new { id = job.Id }, job);
         }
 
         // DELETE: api/Jobs/5

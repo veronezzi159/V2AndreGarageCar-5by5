@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AndreGarageCarJob\AndreGarageCarJob.csproj" />
+    <ProjectReference Include="..\AndreGarageJob\AndreGarageJob.csproj" />
     <ProjectReference Include="..\V2AndreGarageCar-5by5\V2AndreGarageCar-5by5.csproj" />
   </ItemGroup>
 
