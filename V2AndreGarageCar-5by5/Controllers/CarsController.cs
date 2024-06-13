@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Models;
+using Models; 
 using V2AndreGarageCar_5by5.Data;
 
 namespace V2AndreGarageCar_5by5.Controllers
@@ -25,10 +25,10 @@ namespace V2AndreGarageCar_5by5.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
-          if (_context.Car == null)
-          {
-              return NotFound();
-          }
+            if (_context.Car == null)
+            {
+                return NotFound();
+            }
             return await _context.Car.ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace V2AndreGarageCar_5by5.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Car>> GetCar(string id)
         {
-          if (_context.Car == null)
-          {
-              return NotFound();
-          }
+            if (_context.Car == null)
+            {
+                return NotFound();
+            }
             var car = await _context.Car.FindAsync(id);
 
             if (car == null)
@@ -86,10 +86,10 @@ namespace V2AndreGarageCar_5by5.Controllers
         [HttpPost]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
-          if (_context.Car == null)
-          {
-              return Problem("Entity set 'V2AndreGarageCar_5by5Context.Car'  is null.");
-          }
+            if (_context.Car == null)
+            {
+                return Problem("Entity set 'V2AndreGarageCar_5by5Context.Car'  is null.");
+            }
             _context.Car.Add(car);
             try
             {
